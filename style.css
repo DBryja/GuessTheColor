@@ -1,0 +1,212 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed", sans-serif;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #121212;
+}
+body * {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+.max-width,
+.menu {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* HEADER */
+header {
+  background-color: teal;
+  color: white;
+  letter-spacing: 3px;
+  line-height: 1.3;
+}
+.color-name {
+  display: block;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: normal;
+}
+.menu {
+  display: flex;
+  color: teal;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  padding: 10px;
+  height: 50px;
+  user-select: none;
+  text-align: center;
+}
+.difficulty {
+  display: flex;
+  column-gap: 20px;
+}
+.new-colors,
+.difficulty__item {
+  cursor: pointer;
+}
+.bg-white {
+  width: 100vw;
+  background-color: #fff;
+}
+
+/* UNDERLINE EFFECT */
+.underline {
+  position: relative;
+}
+.underline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  transform-origin: center;
+  width: 100%;
+  height: 2px;
+  background-color: teal;
+  transition: 0.2s ease-in-out all;
+  transform: scaleX(0);
+}
+.underline.active::after,
+.underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* COLORS CONTAINER */
+.colors-container {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: center;
+  background-color: #121212;
+  max-height: 50vh;
+  height: 100%;
+  width: 80%;
+}
+.colors-container.hard {
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 60%;
+}
+.color-block {
+  border-radius: 15px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: 0.1s linear;
+  aspect-ratio: 1;
+}
+.color-block:hover {
+  transform: scale(0.95);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr;
+  margin-top: 50px;
+}
+
+/* SCORE BLOCK */
+.score {
+  background-color: teal;
+  display: grid;
+  font-size: 1.2rem;
+  margin-left: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  grid-template-rows: 1fr 1fr;
+}
+.score .easy {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+.score h2 {
+  text-align: center;
+}
+.score p {
+  line-height: 2;
+}
+
+/* COMMENT BLOCK */
+.comments {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+.comment-block {
+  height: 30%;
+  width: 80%;
+  background-color: teal;
+  border-radius: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transform-origin: center;
+}
+.comment-block__content {
+  font-size: 1.8rem;
+  color: white;
+}
+.comment-block::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-right: 50px solid teal;
+  border-bottom: 50px solid transparent;
+  z-index: -1;
+}
+
+@media (max-width: 850px) {
+  body {
+    overflow: unset;
+  }
+  .color-name {
+    padding: 10px 0;
+    font-size: 2rem;
+  }
+  main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr min-content min-content;
+    grid-template-areas:
+      "game"
+      "score"
+      "comment";
+    margin-top: 10px;
+    row-gap: 30px;
+  }
+  .colors-container {
+    grid-area: game;
+    gap: 5px;
+    justify-content: start;
+    align-items: center;
+  }
+  .score {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    grid-area: score;
+    height: min-content;
+    align-self: center;
+  }
+  .score .easy {
+    border-bottom: none;
+  }
+  .comment-block {
+    grid-area: comment;
+    height: unset;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+  .comment-block::after {
+    display: none;
+  }
+}
