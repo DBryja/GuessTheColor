@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     missed: 0,
     accuracy: 0,
     // czas gry (100s)
-    timeStart: 20000,
+    timeStart: 100000,
     timeLeft: 0,
   };
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       block.style.backgroundColor = `rgb(${r},${g},${b})`;
     });
 
-    //  picks a block that user have to choose
+    //  picks a block that user have to choose to win
     blockToGuess = document.querySelector(`.color-block[data-key="${Math.floor(Math.random() * qty)}"]`);
     colorToGuess = blockToGuess.style.backgroundColor;
     document.querySelector(".color-name").textContent = colorToGuess.toUpperCase();
@@ -133,10 +133,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 1000);
     x = setInterval(function () {
       if (statsBeQuick.timeLeft <= 0) {
-        alert("Time is out");
-        startBequick();
+        clearInterval(interval);
+        clearInterval(x);
+        // create popup window
+        const popup = document.createElement("div");
+        popup.classList.add("popup");
+        popup.innerHTML = `
+        <h1>Time's out</h1>
+        <button class='popup-btn'>Try Again</button>
+        `;
+        document.querySelector("main").appendChild(popup);
+        document.querySelector(".hide-bg").style = "display: block";
+        // popup window reset game btn
+        document.querySelector(".popup-btn").addEventListener("click", function () {
+          document.querySelector(".hide-bg").style = "display: none";
+          popup.remove();
+          startBequick();
+        });
+        statsBeQuick.played++;
       }
-    }, 1);
+    }, 10);
   }
 
   //draws statistics
@@ -272,7 +288,6 @@ document.addEventListener("DOMContentLoaded", function () {
         statsHard.played++;
         statsHard.hit++;
       } else if (difficulty === "bequick") {
-        statsBeQuick.played++;
         statsBeQuick.hit++;
       }
       //
