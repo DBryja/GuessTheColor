@@ -14,7 +14,3 @@ It also gives the player harder levels based on his progress.
 
 - Solution URL: [https://github.com/DBryja/GuessTheColor]
 - Live Site URL: [https://dbryja.github.io/GuessTheColor/]
-
-## Author
-
-- Twitter - [@D_Bryja](https://www.twitter.com/D_Bryja)
